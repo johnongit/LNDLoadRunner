@@ -1,0 +1,19 @@
+{
+  "name": "LNDLoadRunner",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "dotenv": "^10.0.0",
+    "fs": "0.0.1-security",
+    "ln-service": "^51.8.4",
+    "lnd-rest-client": "0.0.9",
+    "lodash": "^4.17.21",
+    "winston": "^3.3.3"
+  }
+}
