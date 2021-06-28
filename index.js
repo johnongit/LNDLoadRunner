@@ -72,11 +72,35 @@ function sendPayment() {
     })
 }
 
-lnService.getIdentity({lnd})
-.then(async function (res) {
-    logger.info(res.public_key)
-    await runTest()  
-})
-.catch((err) => {
-    logger.info("Cannot get pubkey " + err)
-})
+
+
+main()
+async function main() {
+    try {
+        const credentials = await lnd_credentials.getNode()
+
+        const {lnd} = await lnService.authenticatedLndGrpc({
+          cert: credentials.cert,
+          macaroon: credentials.admin_macaroon,
+          socket: credentials.lnd_enpoint,
+        });
+        console.log(lnd)
+        lnService.getIdentity({lnd})
+        .then(async function (res) {
+            logger.info(res.public_key)
+            /*
+            config.dest_key.forEach(node => {
+                console.log(node)
+            });
+            */
+            //await runTest(lnd)  
+        })
+        .catch((err) => {
+            logger.info("Cannot get pubkey " + err)
+        })
+    }
+    catch(err) {
+        console.log(err)
+    }
+
+}
