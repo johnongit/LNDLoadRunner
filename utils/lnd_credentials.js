@@ -11,7 +11,6 @@ function getNode() {
     return new Promise((resolve, reject) => {
         const path = join(...[home, node, credentials]);
 
-        console.log(path);
         fs.getFile(path, (err, res) => {
             if(err) {
                 reject("cannot read " +  path)
